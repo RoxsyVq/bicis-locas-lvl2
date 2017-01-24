@@ -1,7 +1,4 @@
-
- 
-
- <html lang="es">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,37 +16,33 @@
   <body>
     <section class="form-container">
       <div class="container-fluid">
-        <form class="form-signup" novalidate  id="form">
+        <form class="form-signup" novalidate id="form" onsumit="validateForm()">
           <h2 id="form-signup-heading">
             Bicis Locas
           </h2>
-            <!-------nombre-->
           <div class="name-container input-box">
             <label for="name" class="sr-only">Nombre</label>
-            <input type="text" id="name" class="form-control" onkeyup="fnombre()"
+            <input type="text" id="name" class="form-control"
             placeholder="Ingrese su nombre">
+              
           </div>
-        <!-----apellido-->
           <div class="lastname-container input-box">
             <label for="lastname" class="sr-only">Apellido</label>
             <input type="text" id="lastname" class="form-control"
             placeholder="Ingrese su apellido">
           </div>
-          <!----------email-->
           <div class="email-container input-box">
             <label for="inputEmail" class="sr-only">
               Correo Electrónico
             </label>
             <input type="email" id="input-email" class="form-control" placeholder="Ingrese su correo electrónico" autofocus="">
           </div>
-        <!------correo-->
           <div class="form-group input-box">
             <label for="inputPassword" class="sr-only">
               Contraseña
             </label>
             <input type="password" id="input-password" class="form-control" placeholder="Ingrese su contraseña">
           </div>
-          <!--bicicleta-->
           <div class="form-group input-box">
             <select class="form-control">
               <option value="0">Selecciona tu tipo de bici</option>
@@ -59,18 +52,17 @@
               <option value="estatica">Estática</option>
             </select>
           </div>
-          <!-----twiter-->
           <div class="input-group">
             <div class="input-group-addon">@</div>
             <input type="text" class="form-control" id="input-social" placeholder="Twitter">
           </div>
-          <div class="checkbox ">
+          <div class="checkbox" id="msj">
             <label>
               <input type="checkbox" value="remember-me">
               <span>Deseo recibir información vía email</span>
             </label>
           </div>
-          <button class="btn btn-lg btn-primary btn-block submit-btn" type="submit " onclick="validateForm()">Registrar</button>
+          <button class="btn btn-lg btn-primary btn-block submit-btn" type="submit" onclick="validateForm()">Registrar</button><br>
         </form>
       </div>  
     </section>
