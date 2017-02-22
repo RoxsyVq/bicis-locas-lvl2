@@ -1,48 +1,94 @@
-function borrarMessage(idInput)
-{
-    var elemento=document.getElementById(idInput);
-     if(elemento.nextSibling!=null)
-         {
-        elemento.parentNode.removeChild(elemento,nextSibling);
-    
-         }           
-    }
 
 
-function cMessage(idInput,message)
-{
-    var elemento=document.getElementById(idInput);
-    if(elemento.nextSibling==null){
-        //si elelemento span no existe
-        var span=document.createComment("span");
-        span.innerHTML=message;
-        elemento.parentNode.appendChild(sp);
-    }
-    else{
-        //el elemento span ya existe
-        if(elemento.nextSibling.tagName=="SPAN")
-         {
-        elemento.nextSibling.innerHTML=message;
-    
-         } else{
-             elemento.parentNode.removeChild(elemento,nextSibling);
-             var span=document.createElement("span");
-             span.innerHTML=message;
-             elemento.parentNode.appendChild(span);
-             
-         }
-    }
+function validateForm(){
+	/* Escribe tú código aquí */
+	var name = document.getElementById('name');
+	var lastName = document.getElementById('lastname');
+	var email = document.getElementById('input-email');
+	var password = document.getElementById('input-password');
+
+	if(Validator.isText(name.value))
+	{
+		removeMessage('name');
+	}else{
+		createMessage('name', 'No es válido');
+	}
+
+	if(Validator.isText(lastName.value))
+	{
+		removeMessage('lastname');
+	}else{
+		createMessage('lastname', 'Ingresa tu apellido');
+	}
+        
+	if(Validator.isValidPassword(password.value))
+	{
+     
+		removeMessage('input-password');
+	}else{
+		createMessage('input-password', 'Tu password no es válido');
+        
+        
+	}
+
+	if(Validator.isEmail(email.value))
+	{
+		removeMessage('input-email');
+	}else{
+		createMessage('input-email', 'Tu e-mail no es válido');
+	}
 }
 
-function primMayuscula(id)
+
+function removeMessage(_inputID)
 {
-    var nombreArray = id.split("");
+	var elemento = document.getElementById(_inputID);
+
+	if(elemento.nextSibling != null)
+	{
+		elemento.parentNode.removeChild(elemento.nextSibling);
+	}
+}
+
+function createMessage(_inputID, _message)
+{
+	var elemento = document.getElementById(_inputID);
+
+	if(elemento.nextSibling == null)
+	{
+		//El span no existe
+		var span = document.createElement('span');
+		span.innerHTML = _message;
+		elemento.parentNode.appendChild(span);
+	}else{
+		//El span ya existe
+		if(elemento.nextSibling.tagName == 'SPAN')
+		{
+			elemento.nextSibling.innerHTML = _message;
+		}else{
+			elemento.parentNode.removeChild(elemento.nextSibling);
+
+			var span = document.createElement('span');
+			span.innerHTML = _message;
+			elemento.parentNode.appendChild(span);
+		}
+	}
+}
+
+
+
+// Validaciones
+
+function primeraMayuscula(texto)
+{
+    var nombreArray = texto.split("");
     var primeraLetra = nombreArray[0];
     var primeraMayus = primeraLetra.toUpperCase();
     var cortePalabra = false;
      for(var i=1;i<nombreArray.length;i++)
         {
           if(cortePalabra)
+			  
           {    
             primeraMayus += nombreArray[i].toUpperCase();
             cortePalabra = false;
@@ -54,55 +100,66 @@ function primMayuscula(id)
         }
     return primeraMayus;
 }	
-    //validaciones
-    var validator ={
-        isText:function(_texto){
-            return /([a-zA-Z]+)/g.test(_texto):
-        },
-    isEmail:function(_texto){
-        return correo.test(_texto):
-    },
-    isPassword:function(_texto){
-        var isValido¨=true;
-        if(_texto.length<6||_texto=="09874");
-        isValido=false;
-        return isValido;
-    }
-    }
+
+
+function inputOnKeyUp(evt)
+{
+    var texto = evt.target.value;
+//console.log("holalal");
+    evt.target.value = primeraMayuscula(texto);  
+}
+
+var Validator = {
+	isText:function (_string)
+	{
+    var regex = (/[0-9]/g).test(_string);
+    if( _string == '' || regex==true){
+        isValid=false;
+           
+        }
+        else{
+            isValid=true;
+        }
+		 return isValid;
+	},
+	isEmail:function (_string)
+	{
+		var regex = /([a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]+)/g;
+		return regex.test(_string);
+	},
+        
+	isValidPassword: function (_string)
+	{
+		var isValid = true;
+		if(_string.length < 6 || _string == '098754' || _string == '123456' || _string == 'password'){
+			isValid = false;
+		
+	}else{
+    isValid=true;
+}
+return isValid;
+        
+};	
+
+
+
+
+
+
+
+//  ota de hACER  validacion   
+//function  Validator()
+//{
+//    this.isText = function(){};
+//}
+//
+//var validator = new Validator()
         
 
 
 
-function validateForm(){	
-var name = document.getElementById("name"); 
-var lastname = document.getElementById("lastname");
-var email = document.getElementById("input-email");
-var password = document.getElementById("input-password");
-var twitter = document.getElementById("input-social");
-var lista= document.getElementsByClassName("form-control")[4];
-var correo=/^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
-if(validator.isText(name.value)){
-    borrarMessage("name");
-    else{
-      cMessage("name","Debe ingresar su nombre");
-    }
-    if(validator.isText(lastname.value))
-    {
-        borrarMessage("lastname");{
-            else{
-                cMessage("lastname","No es valido")
-            }
-        }
-    }
-    if(validator.isText(input-email.value)){
-        borrarMessage("input-email");{
-            else{
-                cMessage("input-email","No es valido")
-            }
-        }
-    }      
-  }
-}
+  
+
 
 
 /*function validateForm(){	

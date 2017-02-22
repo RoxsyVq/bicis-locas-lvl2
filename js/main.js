@@ -51,14 +51,15 @@ function validateForm(){
     var seleccion = document.getElementsByClassName("form-control")[4].value;
     
 
-// validacion de nombre y apellidos......
+// validacion de nombre y apellidos
     
     var numNombre=(/[0-9]/g).test(nombre);
     if(numNombre==true || nombre==""){
         nombreN();
     }else{
         spanNombre.style.display="none";
-    }
+    
+    
     var numApellidos=(/[0-9]/g).test(apellido);
     if(numApellidos == true ||apellido==""){
         apellidoN()
